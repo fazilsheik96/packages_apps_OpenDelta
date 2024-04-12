@@ -26,7 +26,7 @@ import android.view.MenuItem;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.preference.SwitchPreferenceCompat;
+import androidx.preference.SwitchPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
@@ -53,17 +53,17 @@ public class SettingsFragment extends PreferenceFragment implements
     private static final String PREF_FORCE_REFLASH = "force_reflash";
     private static final String PREF_CLEAN_FILES = "clear_files";
 
-    private SwitchPreferenceCompat mNetworksConfig;
+    private SwitchPreference mNetworksConfig;
     private ListPreference mAutoDownload;
     private ListPreference mBatteryLevel;
-    private SwitchPreferenceCompat mChargeOnly;
-    private SwitchPreferenceCompat mABPerfMode;
-    private SwitchPreferenceCompat mABWakeLock;
-    private SwitchPreferenceCompat mABStream;
+    private SwitchPreference mChargeOnly;
+    private SwitchPreference mABPerfMode;
+    private SwitchPreference mABWakeLock;
+    private SwitchPreference mABStream;
     private Config mConfig;
     private PreferenceCategory mAutoDownloadCategory;
     private ListPreference mSchedulerMode;
-    private SwitchPreferenceCompat mSchedulerSleep;
+    private SwitchPreference mSchedulerSleep;
     private Preference mSchedulerDailyTime;
     private Preference mForceReflash;
     private Preference mCleanFiles;
@@ -139,12 +139,12 @@ public class SettingsFragment extends PreferenceFragment implements
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
         if (preference == mNetworksConfig) {
-            boolean value = ((SwitchPreferenceCompat) preference).isChecked();
+            boolean value = ((SwitchPreference) preference).isChecked();
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             prefs.edit().putBoolean(UpdateService.PREF_AUTO_UPDATE_METERED_NETWORKS, value).apply();
             return true;
         } else if (preference == mChargeOnly) {
-            boolean value = ((SwitchPreferenceCompat) preference).isChecked();
+            boolean value = ((SwitchPreference) preference).isChecked();
             mBatteryLevel.setEnabled(!value);
             return true;
         } else if (preference == mSchedulerDailyTime) {
