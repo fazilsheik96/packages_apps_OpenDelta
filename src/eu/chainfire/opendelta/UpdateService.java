@@ -1466,14 +1466,8 @@ public class UpdateService extends Service implements OnSharedPreferenceChangeLi
                             }
                             Logger.d("parsed from json:");
                             Logger.d("fileName= " + fileName);
-                            if (!isMatchingImage(fileName)) {
-                                String[] parts = fileName.split("-", 3);
-                                String ver = mConfig.getAndroidVersion();
-                                if (parts.length > 1) ver = parts[1];
-                                mState.update(State.ERROR_UNOFFICIAL, ver);
-                                return;
-                            }
-                            latestBuild = fileName;
+                            if (isMatchingImage(fileName))
+                                latestBuild = fileName;
                             if (urlOverride != null && !urlOverride.equals(""))
                                 Logger.d("url= " + urlOverride);
                             if (sumOverride != null && !sumOverride.equals("")) {
