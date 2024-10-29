@@ -323,6 +323,7 @@ public class MainActivity extends BaseActivity {
             Logger.d("Service disconnected");
             mUpdateService.getState().removeStateCallback(updateReceiver);
             mUpdateService = null;
+            mStateSet = false;
         }
     };
 
