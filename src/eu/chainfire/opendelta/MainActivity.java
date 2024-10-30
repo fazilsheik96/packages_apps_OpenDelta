@@ -849,6 +849,8 @@ public class MainActivity extends BaseActivity {
                     return Environment.getExternalStoragePublicDirectory(
                             Environment.DIRECTORY_DOCUMENTS) + "/" + split[1];
                 }
+                // assume externally user mounted storage
+                return "/storage/" + type + "/" + split[1];
             }
             // DownloadsProvider
             else if (isDownloadsDocument(uri)) {
