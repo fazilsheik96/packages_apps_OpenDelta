@@ -47,8 +47,8 @@ public class SettingsActivity extends CollapsingToolbarBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getFragmentManager().beginTransaction()
-                .add(R.id.content_frame, new SettingsFragment())
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, new SettingsFragment())
                 .commit();
 
         // Handle window insets for padding adjustments
