@@ -557,7 +557,11 @@ public class MainActivity extends BaseActivity {
         if (isFile)
             return flashImageBase;
 
-        return flashImageBase.substring(0, flashImageBase.lastIndexOf('.'));
+        final int lastDotIndex = flashImageBase.lastIndexOf('.');
+        if (lastDotIndex != -1)
+            return flashImageBase.substring(0, lastDotIndex);
+
+        return flashImageBase;
     }
 
     private String getExtraForState(@StateInt int state, long localCurrent,
@@ -570,7 +574,7 @@ public class MainActivity extends BaseActivity {
             case State.ERROR_UNOFFICIAL:
                 String[] versionParts = mConfig.getVersion().split("-");
                 String versionType = "";
-                try { versionType = versionParts[1]; } catch (Exception ignored) {}
+                try { versionType = versionParts[0]; } catch (Exception ignored) {}
                 return getString(R.string.state_error_not_official_extra, versionType);
             case State.ERROR_DOWNLOAD:
                 return tryGetResourceString("state_error_download_extra_" + errorCode);
